@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-docker-pod1-deployment
+  labels:
+    app: api-docker-pod1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-docker-pod1
+  template:
+    metadata:
+      labels:
+        app: api-docker-pod1
+    spec:
+      containers:
+        - name: api-docker-pod1
+          image: thebb29/api-docker-pod1:latest
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              memory: "240Mi"
+              cpu: "500m"
+            limits:
+              memory: "500Mi"
+              cpu: "1000m"
